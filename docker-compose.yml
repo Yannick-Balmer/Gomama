@@ -1,3 +1,4 @@
+version: "3.8"
 services:
   db-gomama:
     image: postgres:13
@@ -8,8 +9,10 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - gomama-network
 
   backend-gomama:
     container_name: backend-gomama
@@ -22,6 +25,8 @@ services:
       - /app/node_modules
     ports:
       - "3000:3000"
+    networks:
+      - gomama-network
 
   frontend-gomama:
     container_name: frontend-gomama
@@ -30,7 +35,11 @@ services:
       context: ./frontend-gomama
       dockerfile: Dockerfile
     ports:
-      - "5173:5713"
+      - "5173:5173"
+    volumes:
+      - ./frontend-gomama:/app
+    networks:
+      - gomama-network
 
   adminer:
     image: adminer
@@ -40,6 +49,12 @@ services:
     depends_on:
       - db-gomama
     tty: true
+    networks:
+      - gomama-network
 
 volumes:
   data-gomama-db:
+
+networks:
+  gomama-network:
+    driver: bridge
