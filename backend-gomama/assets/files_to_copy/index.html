@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html style="background-color:#000; background: linear-gradient(130deg, #516988  0%, #2f4159 75%);">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, viewport-fit=cover">
+    <title>Apex Timing</title>
+
+
+        <style type="text/css">
+        	* {
+			    -webkit-box-sizing: border-box;
+			    -moz-box-sizing: border-box;
+			    box-sizing: border-box;
+			}
+
+			html{
+				min-height: 100%;
+				height: 100%;
+				height: 100vh;
+			}
+
+			body{
+				min-width: auto;
+				background-color: transparent;
+				padding: 0px;	
+				margin: 0px;
+				min-height: 100%;
+				height: 100%;
+			}
+
+			a, a:hover, a:focus, a:active{
+				color: inherit;
+				text-decoration: none;
+				outline: transparent;
+				outline: none;
+				border: none;
+			}
+
+			input{
+			  border:none;
+			}
+
+			input, input:hover, input:focus, input:active{
+			  outline: none;
+			}
+
+
+			.body{
+				height: 100%;
+				width: 100%;
+				background-color: #3cb4ff;
+			  	background-color: #2f4159;
+			}
+
+
+			.body > .background_gradient{
+			  height: 100%;
+			  background: -moz-linear-gradient(-40deg, #435a78 0%, #2f4159 75%);
+			  background: -webkit-linear-gradient(-40deg, #435a78 0%, #2f4159 75%);
+			  background: linear-gradient(130deg, #516988  0%, #2f4159 75%);
+			  padding-top: 14%;
+			}
+
+			.block_logo{
+			    height: 28%;
+			    position: relative;
+			    text-align: center;
+			    vertical-align: middle;
+			    /*padding-top: 28%;*/
+			}
+
+			.block_logo img{
+			  max-width: 80%;
+			  max-height: 90%;
+		      margin-top: 20px;
+			}
+
+			iframe{
+				height: 400px;
+				display: none;
+			}
+
+	    </style>
+
+
+	    <style type="text/css">
+	    	/*----------------- Auto log -----------------*/
+			.block_auto_log{
+			  position: fixed;
+			  bottom: 18%;
+			  width: 100%;
+			  display: none;
+			}
+
+			.block_auto_log .loader{
+			  margin-left: auto;
+			  margin-right: auto;
+			  border: 2px solid transparent; 
+			  border-top-color: #bfd4f2;
+			  border-bottom-color: #bfd4f2;
+			  border-radius: 50%;
+			  left: 0px;
+			  right: 0px;
+			  position: absolute;
+			}
+
+			.block_auto_log .loader_1{
+			  width: 40px;
+			  height: 40px;
+			  top: 0px;
+			  -webkit-animation: spin 1.5s infinite linear;
+			          animation: spin 1.5s infinite linear;
+			      border-width: 8px;
+			}
+
+			.block_auto_log .loader_2{
+			  width: 30px;
+			  height: 30px;
+			  top: 5px;
+			  -webkit-animation: spin 1.2s infinite linear;
+			          animation: spin 1.2s infinite linear;
+			  -webkit-animation-direction: reverse;
+			          animation-direction: reverse;
+			      border-width: 3px;
+			}
+
+			.block_auto_log .loader_3{
+			  width: 8px;
+			  height: 8px;
+			  top: 16px;
+			  -webkit-animation: spin 1.5s infinite linear;
+			          animation: spin 1.5s infinite linear;
+			  border-color: #bfd4f2;
+			  background-color: #bfd4f2;
+			}
+
+			@keyframes spin {
+			    from {transform:rotate(0deg);}
+			    to {transform:rotate(360deg);}
+			}
+			@-webkit-keyframes spin {
+			    from{ -webkit-transform:rotate(0deg);}
+			    to{ -webkit-transform:rotate(360deg);}
+			}
+
+			@keyframes spin_reverse {
+			    from {transform:rotate(-359deg);}
+			    to {transform:rotate(0deg);}
+			}
+			@-webkit-keyframes spin_reverse {
+			    from{ -webkit-transform:rotate(-359deg);}
+			    to{ -webkit-transform:rotate(0deg);}
+			}
+	    </style>
+
+	    <style type="text/css">
+	    	.bottom_bar_height{
+	    		width: 0px;
+	    		height: 0px;
+	    		height: env(safe-area-inset-bottom, 0px);
+	    		opacity: 0;
+	    		background-color: transparent;
+	    		position: fixed;
+	    		left: 0;
+	    		bottom: 0;
+	    	}
+	    </style>
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="javascript/config.js"></script>
+
+
+    <script type="text/javascript">
+    	//////////////////////////////////////////////////////////////////////////////////////////////////////
+		function pad(str,max){
+		 	str = str.toString();
+		 	return str.length < max ? pad("0" + str, max) : str;
+		}
+    </script>
+
+
+</head>
+<body>
+        
+<script type="text/javascript">
+var app = { initialize: function(){// Application Constructor
+		        this.bindEvents();
+		    },
+		    bindEvents: function() {// Bind Event Listeners // 'load', 'deviceready', 'offline', and 'online'.
+		    	document.addEventListener('deviceready', inject_cookie, false); //Pour corriger le bug des cookies introduit avec WKWebWiew
+		        document.addEventListener('deviceready', this.onDeviceReady, false);
+		        document.addEventListener("deviceready", change_statut_bar_back_color, false); //Pour corriger le bug de cli 7.0.1 de la couleur de la statubar
+		    },
+		    onDeviceReady: function(){
+		        //app.receivedEvent('deviceready');
+				//document.getElementsByTagName('iframe')[0].src = 'https://www.apex-timing.com/test/gokarts/app/initialisation.php';
+				document.getElementsByTagName('iframe')[0].src = 'https://www.apex-timing.com/gokarts/app/initialisation.php?center=' + center_id;
+		    },
+		    receivedEvent: function(id){// Update DOM on a Received Event
+
+		    }
+		};
+
+app.initialize();
+
+
+//Pour corriger le bug de cli 7.0.1 les préférences de statusbar ne sont plus prise en compte dans le config.xml, pour palier au bug la couleur est initialisé dans le javascript de la première page
+function change_statut_bar_back_color() {
+	//set en full screen avec ios 
+	/*if(StatusBar){	
+		StatusBar.overlaysWebView(false);
+		StatusBar.backgroundColorByHexString("#000000");
+		//StatusBar.styleLightContent();
+		StatusBar.styleDefault();
+	}*/
+
+	// var bottom_bar_height = parseInt(window.getComputedStyle(document.getElementsByClassName('bottom_bar_height')[0]).height,10);
+	// if(device.platform == 'iOS' && bottom_bar_height < 1){ //pour les ios < iphone 10 met la statusbar en noir ecriture blanche
+	// 	StatusBar.overlaysWebView(false);
+	// 	StatusBar.backgroundColorByHexString("#000000");
+	// 	StatusBar.styleLightContent();
+	// }else{
+	// 	StatusBar.overlaysWebView(true);
+	// 	// StatusBar.backgroundColorByHexString("#ffffff");
+	// 	StatusBar.styleDefault();		
+	// }
+
+	// StatusBar.overlaysWebView(false);
+	// StatusBar.backgroundColorByHexString("#000000");
+	// StatusBar.styleLightContent();
+}
+
+//Pour Corrigé le bug qui empèche d'inscrire des cookies au premier lancement de l'app depuis WKWebView -> utilise cordova-plugin-wkwebview-cookie-sync
+function inject_cookie(){ 
+	try{
+		if(device.platform == 'iOS'){
+			wkWebView.injectCookie('www.apex-timing.com/gokarts/app',
+								    function () {
+									    //alert('success')
+								    },
+								    function () {
+								      	//alert('Error ! Restart App !');
+								    }
+								);
+		}
+	}catch(e){
+
+	}
+}
+
+
+//regarder la page: https://forum.ionicframework.com/t/push-notifications-with-ionic-2/63851/7
+// https://github.com/phonegap/phonegap-plugin-push/issues/1274
+// https://github.com/fechanique/cordova-plugin-fcm/issues/106
+
+//https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/API.md
+function push_gcm(callback){ //obsolète plus utilisé avec cordova 12
+	try{
+        var push = PushNotification.init({
+            "android": {
+                "senderID": sender_id, //"505578118943"
+                "clearBadge": true,
+                "clearNotifications" : true,
+                "vibrate" : true
+            },
+            "browser": {},
+            "ios": {
+            	"senderID": sender_id, //"505578118943"
+            	"gcmSandbox": false, //true en developpement et false en production
+                "sound": true,
+                "vibration": true,
+                "badge": true,
+                "clearBadge": true //efface le badge à l'ouverture de l'app
+            },
+            "windows": {}
+        });
+	}catch(e){
+		if(center_id == 1){
+		    alert('error init')
+		    alert(e.message)			
+		}
+		callback(''); 		
+	}
+
+    push.on('registration', function(data){ 	
+    	callback(data.registrationId);
+    });
+
+    push.on('error', function(e){    	
+        callback('');
+    });
+}
+
+function push_fcm(callback){ //dans les fonction car fonction asynchrone
+    try{ //https://www.npmjs.com/package/cordova-plugin-firebasex#grantpermission
+        FirebasePlugin.hasPermission(function(hasPermission){
+            if(!hasPermission){
+                FirebasePlugin.grantPermission(function(hasPermission){ 
+                    //alert("Notifications permission was " + (hasPermission ? "granted" : "denied"));
+                    if(hasPermission){
+                        push_fcm_get_token(callback);
+                    }else{
+                        callback(''); 
+                    }
+                    
+                }, function(error) {
+                    //alert(error);
+                    callback(''); 
+                })
+            }else{
+                push_fcm_get_token(callback);
+            }
+        }, function(error) {
+            //alert(error);
+            callback(''); 
+        })
+
+    }catch(e){
+        if(center_id == 1){
+            alert('error init')
+            alert(e.message)            
+        }
+        callback('');       
+    }
+}
+
+function push_fcm_get_token(callback){
+    try{
+        FirebasePlugin.setBadgeNumber(0);
+
+        FirebasePlugin.subscribe("all_notifications", function(){ //pour l'envoi de masse au topic all_notifications
+            //alert("Subscribed to topic");
+
+        }, function(error){
+            //alert("Error subscribing to topic: " + error);
+        });
+
+        setTimeout(function(){ //attend 1sec pour getToken sinon le geton APNS n'est pas encore défini entre firebase et apple et déclanche une erreur...
+            FirebasePlugin.getToken(function(fcmToken) {
+                //alert(fcmToken);
+                callback(fcmToken)
+            }, function(error) {
+                //alert(error);
+                callback(''); 
+            })
+        },1000)
+
+
+    }catch(e){
+        if(center_id == 1){
+            alert('error init')
+            alert(e.message)            
+        }
+        callback('');       
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+var eventer = window[eventMethod];
+var messageEvent = (eventMethod == "attachEvent") ? "onmessage" : "message";
+eventer(messageEvent, message_received, false);
+
+function send_message(data){
+	var message = JSON.stringify(data);
+    var iframe = document.getElementsByTagName('iframe')[0];
+    var content_window = iframe.contentWindow || iframe.contentDocument;
+    content_window.postMessage(message,'*');
+}
+
+
+var get_push_id_timeout = null;
+var app_parameters_already_send = false;
+function message_received(e){
+	var message = JSON.parse(e.data);
+
+    if(message.type == 'app_parameters'){
+		app_parameters();
+
+    }else if(message.type == 'go_home'){ 	
+		//setTimeout(function(){ document.location = 'https://www.apex-timing.com/test/gokarts/app/login.php?center=' + center_id; }, 2000);//center définit dans config.js
+		setTimeout(function(){ document.location = 'https://www.apex-timing.com/gokarts/app/login.php?center=' + center_id; }, 2000);//center définit dans config.js
+		//document.location = 'https://www.apex-timing.com/gokarts/app/login.php?center=' + center_id;
+    }
+}
+
+function app_parameters(){
+    var callback = function(push_id){
+						if(app_parameters_already_send){
+							return;
+						}
+						
+						app_parameters_already_send = true;
+						clearTimeout(get_push_id_timeout);
+
+				        var response = { type: 'app_parameters',
+				        				 local_url: window.location.href.replace('index.html',''),
+				        				 center_id: center_id, //définit dans config.js
+				        				 app_version: app_version, //définit dans config.js
+				        				 app_package_name: BuildInfo.packageName || '', //definit par cordova depuis la v4.0.0
+				        				 app_name: BuildInfo.name || '', //definit par cordova depuis la v4.0.0
+				        				 app_build_version: BuildInfo.version || '', //definit par cordova depuis la v4.0.0
+				        				 app_code_version: BuildInfo.versionCode || '', //definit par cordova depuis la v4.0.0
+				        				 device_version: device.version || '', //definit par cordova
+				        				 device_platform: device.platform || '', //definit par cordova
+				        				 push_id: push_id
+				        			}
+				        send_message(response);
+					}
+
+	get_push_id_timeout = setTimeout(function(){ callback('') },10000); //si pas de réponse pour le push au bout de 10sec
+	//push_gcm(callback);
+	push_fcm(callback);
+}
+
+// function go_home(){ 
+// alert('go_home')
+// 	try{
+// 		const req = new XMLHttpRequest();
+// 		req.open('GET', 'https://www.apex-timing.com/test/gokarts/app/home.php', false); // Ici, la requête sera émise de façon synchrone. //ne marche pas avec cache_downloader.php
+// 		req.send(null);
+// alert('req')
+// 		if(req.status === 200){	
+// alert('200')				
+// 			clearTimeout(no_connection_page_timeout);
+// 		    setTimeout(function(){ document.location = 'https://www.apex-timing.com/test/gokarts/app/cache_downloader.php'; }, 3000);
+// 		}else{
+// alert('error')			
+// 		    document.location = 'offline.html';
+// 		}
+// 	}catch(e){
+// 		alert('error')
+// 		alert(e)
+// 	}
+// }
+
+
+var no_connection_page_timeout = setTimeout(function(){ document.location = 'offline.html'; }, 20000); //si il n'a pas été redirigé vers la home.php // si pas internet et pas log
+
+</script>
+
+
+	<div class="body">
+    	<div class="background_gradient">
+    		<div class="block_logo">
+    			<img id="logo" src="images/logo_2.png" style="display:none;">
+
+    			<script type="text/javascript">
+    					function load_logo(){ //charge le logo du serveur et plus celui en local
+    						var image = new Image();
+					        image.onerror = function(){
+					        	var loader = document.getElementById('loader');
+					        	loader.style.display = 'block'; 
+					        	setTimeout(function(){ load_logo() },200);
+					        };
+					        image.onload  = function(){
+					        	var logo = document.getElementById('logo'); 
+					        	if(logo){
+					            	logo.src = this.src; 
+					            	logo.style.display = 'inline-block';
+
+					            	var loader = document.getElementById('loader');
+					        		loader.style.display = 'none'; 
+					          	}
+					        }; 
+					        image.src = 'https://www.apex-timing.com/gokarts/media/center' + pad(center_id,3) + '/app/logo_2.png';
+					    }
+
+					    load_logo();
+    			</script>
+
+    		</div>
+
+
+    		<div id="loader" class="block_auto_log"> <!-- comme pour le login -->
+                <div class="loader loader_1"></div>
+                <div class="loader loader_2"></div>
+                <div class="loader loader_3"></div>
+            </div>
+
+            <div class="bottom_bar_height"><!-- juste pour connaitre la taille de la barre du bas --></div>
+    	</div>
+    </div>
+
+	<iframe></iframe>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+	<!-- <script type="text/javascript" src="https://www.apex-timing.com/gokarts/javascript/javascript_app_index.js"></script> --> <!-- script pour le debug -->
+	<script type="text/javascript"> //Depuis la modif ou je ne prend plus le default folder du center.xml pour les centre qui ne sont pas dans le center.xml
+		var javascript = document.createElement("script");
+		javascript.type = "text/javascript";
+		javascript.src = "https://www.apex-timing.com/gokarts/javascript/javascript_app_index.js?center="+center_id;
+		document.getElementsByTagName('footer')[0].appendChild(javascript);		
+	</script>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

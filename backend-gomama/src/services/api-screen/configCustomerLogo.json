@@ -1,0 +1,25 @@
+{
+  "appName": "Motokáry Žilina",
+  "appTitle": " Motokary Zilina SVK",
+  "folderName": "motokaryzilina",
+  "colorMain": {
+    "red": 255,
+    "green": 255,
+    "blue": 255
+  },
+  "colorBorder": {
+    "red": 254,
+    "green": 193,
+    "blue": 7
+  },
+  "colorHsl": {
+    "h": 180,
+    "s": 66,
+    "l": 16
+  },
+  "logoName": "logo_1.png",
+  "logoName2": "logo_2.png",
+  "version": "5.0.0",
+  "centre_id": "713",
+  "language": "EN"
+}

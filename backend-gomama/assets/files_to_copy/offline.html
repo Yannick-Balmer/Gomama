@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Offline</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="robots" content="noindex, nofollow"/><!-- balise pour empêcher l'indexation de la page -->
+
+    <script type="text/javascript" src="javascript/config.js"></script>
+    <script type="text/javascript" src="javascript/language.js"></script>
+</head>
+
+
+
+
+
+
+<style type="text/css">
+	html{
+		min-height: 100%;
+		height: 100%;
+
+		min-height: 100vh;
+		height: 100vh;
+	}
+
+	body{
+		min-width: auto;
+		background-color: transparent;
+		padding: 0px;	
+		margin: 0px;
+		min-height: 100%;
+		height: 100%;
+		overflow: hidden;
+		font-family: sans-serif;
+	}
+
+	a, a:hover, a:focus, a:active{
+		color: inherit;
+		text-decoration: none;
+		outline: transparent;
+		outline: none;
+		border: none;
+	}
+
+	.body{
+		height: 100%;
+		width: 100%;
+		background-color: #3cb4ff;
+	  	background-color: #2f4159;
+	}
+
+
+	.body > .background_gradient{
+	  height: 100%;
+	  background: -moz-linear-gradient(-40deg, #435a78 0%, #2f4159 75%);
+	  background: -webkit-linear-gradient(-40deg, #435a78 0%, #2f4159 75%);
+	  background: linear-gradient(130deg, #516988  0%, #2f4159 75%);
+	}
+
+
+	.no_connection {
+	    color: #fff;
+	    font-size: 11px;
+	    font-size: 3.5vw;
+	    width: 85%;
+	    margin-left: auto;
+	    margin-right: auto;
+	    text-align: center;
+	    background-color: rgba(0, 0, 0, 0.2);
+	    padding: 4px;
+	    padding-top: 17px;
+	    padding-bottom: 16px;
+	    border-radius: 11px;
+	    position: absolute;
+	    bottom: 7%;
+	    left: 0px;
+	    right: 0px;
+	}
+
+	.block_image{
+	    position: absolute;	
+	    top: calc(50% - 186px);	
+	    margin-left: auto;
+	    margin-right: auto;
+	    left: 0px;
+	    right: 0px;
+	}
+
+	img.no_internet{
+   	 	max-width: 270px;
+	    margin-left: auto;
+	    margin-right: auto;
+	    display: block;
+	}
+
+	.retry{
+	    color: #bfd4f2;
+		text-align: center;
+		font-size: 12px;
+	    font-size: 4vw;
+    	margin-top: -12px;
+	}
+
+	.retry a:after{
+	    content: '➡';
+	    font-size: 91%;
+	    line-height: 0px;
+	    margin-left: 5px;
+	    margin-right: -13px;
+	    position: relative;
+	    top: 1px;
+	    content: '>';
+	    font-weight: bold;
+	}
+
+
+</style>
+
+
+
+
+<body>
+	<div class="body">
+	    <div class="background_gradient">
+	    	<div class="block_image">
+	    		<img class="no_internet" src="images/no_internet_connection.png" draggable="false">
+
+	    		<div class="retry">
+		    		<a id="retry" href="index.html">Réessayer</a>
+		    	</div>
+		    </div>
+
+			
+		    <div id="no_connection" class="no_connection">Requiert une connection internet</div>
+		</div>
+ 	<div>
+</body>
+
+
+<script type="text/javascript">
+	var language = (translations[language]) ? language : 'EN';
+	document.getElementById('retry').innerHTML = translations[language].retry;
+	document.getElementById('no_connection').innerHTML = translations[language].connection_required;
+
+
+
+
+
+</script>
+
+
+
+
+
+</html>

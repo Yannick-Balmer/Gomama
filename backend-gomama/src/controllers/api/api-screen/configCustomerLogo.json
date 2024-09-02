@@ -1,0 +1,24 @@
+{
+  "appName": "Speeders Eat-Play-Race",
+  "folderName": "speeders",
+  "colorMain": {
+    "red": 0,
+    "green": 0,
+    "blue": 0
+  },
+  "colorBorder": {
+    "red": 226,
+    "green": 39,
+    "blue": 38
+  },
+  "colorHsl": {
+    "h": 143,
+    "s": 13,
+    "l": -10
+  },
+  "logoName": "logo_1.png",
+  "logoName2": "logo_2.png",
+  "version": "5.0.0",
+  "centre_id": "462",
+  "language": "EN"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "_ga_64EQFFKSHW",
+    "value": "GS1.1.1722438127.1.1.1722438127.0.0.0",
+    "domain": ".firebase.google.com",
+    "path": "/",
+    "expires": 1756998127.579285,
+    "size": 51,
+    "httpOnly": false,
+    "secure": false,
+    "session": false,
+    "priority": "Medium",
+    "sameParty": false,
+    "sourceScheme": "Secure"
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.1.1384894420.1722438128",
+    "domain": ".firebase.google.com",
+    "path": "/",
+    "expires": 1756998127.545083,
+    "size": 30,
+    "httpOnly": false,
+    "secure": false,
+    "session": false,
+    "priority": "Medium",
+    "sameParty": false,
+    "sourceScheme": "Secure"
+  },
+  {
+    "name": "django_language",
+    "value": "en",
+    "domain": "firebase.google.com",
+    "path": "/",
+    "expires": 1737990127,
+    "size": 17,
+    "httpOnly": false,
+    "secure": false,
+    "session": false,
+    "priority": "Medium",
+    "sameParty": false,
+    "sourceScheme": "Secure"
+  },
+  {
+    "name": "_ga2",
+    "value": "GA1.3.1497225516.1722438127",
+    "domain": ".firebase.google.com",
+    "path": "/",
+    "expires": 1756998126.955817,
+    "size": 31,
+    "httpOnly": false,
+    "secure": false,
+    "session": false,
+    "priority": "Medium",
+    "sameParty": false,
+    "sourceScheme": "Secure"
+  },
+  {
+    "name": "_ga_devsite",
+    "value": "GA1.3.977557285.1722438125",
+    "domain": "firebase.google.com",
+    "path": "/",
+    "expires": 1756998127.458036,
+    "size": 37,
+    "httpOnly": false,
+    "secure": false,
+    "session": false,
+    "priority": "Medium",
+    "sameParty": false,
+    "sourceScheme": "Secure"
+  }
+]

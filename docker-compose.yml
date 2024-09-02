@@ -1,0 +1,45 @@
+services:
+  db-gomama:
+    image: postgres:13
+    volumes:
+      - data-gomama-db:/var/lib/postgresql/data
+      # - ./init-db-gomama.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+  backend-gomama:
+    container_name: backend-gomama
+    restart: on-failure
+    build:
+      context: ./backend-gomama
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend-gomama:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+
+  frontend-gomama:
+    container_name: frontend-gomama
+    restart: on-failure
+    build:
+      context: ./frontend-gomama
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5713"
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - db-gomama
+    tty: true
+
+volumes:
+  data-gomama-db:

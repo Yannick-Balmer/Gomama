@@ -1,0 +1,62 @@
+{
+  "layerMain": { "name": "Main" },
+  "layerBorder": { "name": "Border" },
+  "filePathIconTemplate": "C:/wamp64/www/AppVisuels/assets/",
+  "fileNameIconTemplate": "icon_900x900.psd",
+  "fileNameHeaderPlayer": "header_player_store.psd",
+  "fileNameScreen": "screen.psd",
+  "fileNameScreenEnglish": "screen_en.psd",
+  "filePathLogoCustomer": "C:/wamp64/www/AppVisuels/assets/",
+  "pathApp": "//APEX-NAS/Design/Site web/gokarts_app/gokarts_app/clients/AA-TEST",
+  "pathAssetsFilesToCopy": "C:/wamp64/www/AppVisuels/assets/files_to_copy/",
+  "pathFolderIcones": {
+    "javascript": "www/javascript",
+    "screen": "screen",
+    "images": "www/images",
+    "child": { "ios": "ios", "android": "android" },
+    "type": { "ipad": "ipad", "iphone": "iphone" }
+  },
+  "pathPhotoshop": "C:/Program Files/Adobe/Adobe Photoshop 2024/Photoshop.exe",
+  "pathJsxFile": "C:/wamp64/www/AppVisuels/api-screen/JsxFiles/main.jsx",
+  "androidIcons": [
+    { "name": "icon_36.png", "width": 36, "height": 36 },
+    { "name": "icon_48.png", "width": 48, "height": 48 },
+    { "name": "icon_72.png", "width": 72, "height": 72 },
+    { "name": "icon_96.png", "width": 96, "height": 96 },
+    { "name": "icon_144.png", "width": 144, "height": 144 },
+    { "name": "icon_192.png", "width": 192, "height": 192 }
+  ],
+  "iosIcons": [
+    { "name": "icon-29.png", "width": 29, "height": 29 },
+    { "name": "icon-29@2x.png", "width": 58, "height": 58 },
+    { "name": "icon-29@3x.png", "width": 87, "height": 87 },
+    { "name": "icon-40.png", "width": 40, "height": 40 },
+    { "name": "icon-40@2x.png", "width": 80, "height": 80 },
+    { "name": "icon-50.png", "width": 50, "height": 50 },
+    { "name": "icon-50@2x.png", "width": 100, "height": 100 },
+    { "name": "icon-57.png", "width": 57, "height": 57 },
+    { "name": "icon-57@2x.png", "width": 114, "height": 114 },
+    { "name": "icon-60.png", "width": 60, "height": 60 },
+    { "name": "icon-60@2x.png", "width": 120, "height": 120 },
+    { "name": "icon-60@3x.png", "width": 180, "height": 180 },
+    { "name": "icon-72.png", "width": 72, "height": 72 },
+    { "name": "icon-72@2x.png", "width": 144, "height": 144 },
+    { "name": "icon-76.png", "width": 76, "height": 76 },
+    { "name": "icon-76@2x.png", "width": 152, "height": 152 },
+    { "name": "icon-83.5@2x.png", "width": 167, "height": 167 }
+  ],
+  "iosSplash": [
+    { "name": "Default@2x~iphone.png", "width": 640, "height": 960 },
+    { "name": "Default~iphone.png", "width": 320, "height": 480 },
+    { "name": "Default-568h@2x~iphone.png", "width": 640, "height": 1136 },
+    { "name": "Default-667h.png", "width": 750, "height": 1334 },
+    { "name": "Default-736h.png", "width": 1242, "height": 2208 },
+    { "name": "Default-2436h.png", "width": 1125, "height": 2436 },
+    { "name": "Default-Landscape@2x~ipad.png", "width": 2048, "height": 1536 },
+    { "name": "Default-Landscape~ipad.png", "width": 1024, "height": 768 },
+    { "name": "Default-Landscape-736h.png", "width": 2208, "height": 1242 },
+    { "name": "Default-Landscape-2436h.png", "width": 2436, "height": 1125 },
+    { "name": "Default-Portrait@2x~ipad.png", "width": 1536, "height": 2048 },
+    { "name": "Default-Portrait~ipad.png", "width": 768, "height": 1024 }
+  ]
+}

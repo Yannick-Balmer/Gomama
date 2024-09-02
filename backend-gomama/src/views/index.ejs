@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liste de Composants</title>
+    <!-- Inclusion de Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .indicator {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: #ccc;
+        border-radius: 50%;
+      }
+      .btn-fixed-width {
+        width: 250px; /* Définissez la largeur souhaitée pour tous les boutons */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <%- include('partials/topbar.ejs') %>
+      <ul class="list-group">
+        <li class="list-group-item d-flex align-items-center">
+          <button
+            class="btn btn-primary btn-fixed-width"
+            onclick="location.href='/screen/create'"
+          >
+            Créer visuels
+          </button>
+          <span class="indicator ml-auto"></span>
+        </li>
+        <li class="list-group-item d-flex align-items-center">
+          <button class="btn btn-primary btn-fixed-width">
+            Configurer Firebase
+          </button>
+          <span class="indicator ml-auto"></span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Inclusion de Bootstrap JS et jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
